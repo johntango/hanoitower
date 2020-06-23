@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: hsla(175, 85%, 10%, 0.92);
+}
+
+.game {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
+}
+
+.peg {
+  width: 140px;
+  height: 200px;
+  background: rgba(236, 231, 231, 0.509);
+  display: inline-block;
+  margin: 40px;
+  border-radius: 5%;
+}
+.disk {
+  width: 20px;
+  height: 20px;
+  background: rgb(211, 35, 35);
+  margin: 10px;
+  border-radius: 5%;
+  display: block;
+  position: absolute;
+}
+.ball {
+  width: 80px;
+  height: 80px;
+  background: #000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 2;
+}

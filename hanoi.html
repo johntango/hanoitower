@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="Output.js"></script>
+  </head>
+  <body>
+    <div class="game">
+      <div class="peg"></div>
+      <div class="peg"></div>
+      <div class="peg"></div>
+    </div>
+
+    <script>
+      window.onload = function () {
+        const pegArray = ["A", "B", "C"];
+
+        const widthDisk = (num) => {
+          return 20 + 20 * num;
+        };
+        const plotAll = (pegArray, pegMap) => {
+          var pegs = document.getElementsByClassName("peg");
+          for (let i = 0; i < 3; i++) {
+            // loop over pegs
+            var diskList = pegMap[pegArray[i]];
+
+            // clear pegs of disks and regenerate
+            var node = pegs.item(i);
+            while (node.lastElementChild) {
+              node.removeChild(node.lastElementChild);
+            }
+            const nElem = diskList.length;
+            if (nElem > 0) {
+              for (let j = nElem - 1; j >= 0; j--) {
+                // should be smallest disk first
+                let disk = diskList[j];
+                let newdiv = document.createElement("div");
+                newdiv.setAttribute("class", "disk");
+                newdiv.setAttribute("id", disk);
+                newdiv.style.width = widthDisk(disk);
+                newdiv.style.bottom = 200 - 1.2 * widthDisk(disk);
+                newdiv.style.left = 265 + 220 * i - 5 * disk;
+                pegs.item(i).appendChild(newdiv);
+              }
+            }
+          }
+        };
+        const sleep = (milliseconds) => {
+          return new Promise((resolve) => setTimeout(resolve, milliseconds));
+        };
+        const run = async function () {
+          for (let i = 0; i < data.length; i++) {
+            pegMap = data[i];
+            plotAll(pegArray, pegMap);
+            await sleep(3000);
+          }
+        };
+        run();
+      };
+    </script>
+  </body>
+</html>

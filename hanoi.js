@@ -62,7 +62,7 @@ const initialize = (nDisks, pegMap) => {
   }
   writeAll(pegMap);
 };
-const nDisks = 3;
+const nDisks = 5;
 initialize(nDisks, pegMap);
 var sparePeg = missing("A", "C");
 

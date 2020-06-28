@@ -2,7 +2,7 @@
 
 <head>
   <link rel="stylesheet" href="./style.css" />
-  <script src="Output.js"></script>
+  <script src="./peghist.js"></script>
 </head>
 
 <body>
@@ -13,47 +13,7 @@
     window.onload = function () {
       const pegArray = ["A", "B", "C"];
       var pegs = [];
-      const pegHist = [{
-          "A": [3, 2, 1],
-          "B": [],
-          "C": []
-        },
-        {
-          "A": [3, 2],
-          "B": [],
-          "C": [1]
-        },
-        {
-          "A": [3],
-          "B": [2],
-          "C": [1]
-        },
-        {
-          "A": [3],
-          "B": [2, 1],
-          "C": []
-        },
-        {
-          "A": [],
-          "B": [2, 1],
-          "C": [3]
-        },
-        {
-          "A": [1],
-          "B": [2],
-          "C": [3]
-        },
-        {
-          "A": [1],
-          "B": [],
-          "C": [3, 2]
-        },
-        {
-          "A": [],
-          "B": [],
-          "C": [3, 2, 1]
-        }
-      ];
+
       var diskArray = []; // this stores the shaddow DOM disks 
       const game = document.getElementById('game');
 
@@ -72,19 +32,20 @@
         })
       };
 
-      function positionDisk(domDiv, diskNumber, indexOnPeg, pegindex) {
-        let disk = domDiv; // get handle on Disk in DOM 
+      function positionDisk(domdiv, diskNumber, indexOnPeg, pegindex) {
+
         // set its position 
         let pegCenter = 300 * pegindex + 100;
         let diskWidth = diskNumber * 40 + 20;
         let base = 400;
         let diskHeight = 20;
 
-        disk.style.left = pegCenter - diskWidth / 2;
-        disk.style.width = diskWidth;
-        disk.style.top = 400 - diskHeight * indexOnPeg;
-        console.log('Disk:' + diskNumber + ' at top: ' + disk.style.top);
-        disk.style.height = diskHeight;
+        domdiv.style.left = pegCenter - diskWidth / 2;
+        domdiv.style.width = diskWidth;
+        domdiv.style.top = 400 - diskHeight * indexOnPeg;
+        console.log('Disk:' + diskNumber + ' at top: ' + domdiv.style.top);
+        domdiv.style.height = diskHeight;
+        domdiv.innerHTML = '  ' + diskNumber;
       }
       const sleep = (milliseconds) => {
         return new Promise((resolve) => setTimeout(resolve, milliseconds));
@@ -94,7 +55,6 @@
         // this determines start positions 
         let newdiv = document.createElement("div");
         positionDisk(newdiv, id, indexOnPeg, pegNumber);
-
         newdiv.setAttribute('class', type); // these are the pegs
         newdiv.setAttribute('id', id)
         game.appendChild(newdiv);
@@ -107,13 +67,11 @@
       function pegFactory(id, indexOnPeg, pegNumber, type) {
         // this determines start positions 
         let newdiv = document.createElement("div");
-
         newdiv.setAttribute('class', 'peg'); // these are the pegs
         newdiv.setAttribute('id', id)
         let pegCenter = 300 * pegNumber + 60;
         let base = 400;
         let diskHeight = 200;
-
         newdiv.style.left = pegCenter;
         newdiv.style.width = 20;
         newdiv.style.top = 200;

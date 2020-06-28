@@ -1,5 +1,5 @@
 const fs = require("fs");
-let path = "Output.js";
+let path = "output.js";
 fs.open(path, "w", function (err, fd) {
   if (err) {
     throw "could not open file: " + err;
@@ -8,13 +8,15 @@ fs.open(path, "w", function (err, fd) {
 
 const writeAll = (pegMap) => {
   let s = JSON.stringify(pegMap) + ",";
-  fs.appendFile("Output.js", s, (err) => {
-    if (err) throw err;
-    console.log("Output.js written");
-  });
+  fs.writeFileSync("output.js");
+  console.log(s);
 };
 
-const pegMap = { A: [], B: [], C: [] };
+const pegMap = {
+  A: [],
+  B: [],
+  C: []
+};
 const pegArray = ["A", "B", "C"];
 
 const updateMapAndPlot = (pegMap, from, to) => {
@@ -43,7 +45,11 @@ const moveDisks = function (n, from, to, spare) {
 };
 // given from and to figure out the other peg
 const missing = (from, to) => {
-  const all = { A: 1, B: 2, C: 3 };
+  const all = {
+    A: 1,
+    B: 2,
+    C: 3
+  };
   let total = all[from] + all[to];
   let miss = 5 - total; // 0 based so not 6 but one less
   let keys = Object.keys(all); // array of keys

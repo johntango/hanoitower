@@ -6,29 +6,30 @@ body {
 
 .game {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   width: 100%;
-  text-align: center;
+  height: 100%;
+  background: rgba(236, 231, 231, 0.509);
 }
 
 .peg {
-  width: 140px;
-  height: 200px;
+  width: 30px;
+  height: 300px;
   background: rgba(236, 231, 231, 0.509);
-  display: inline-block;
+  position: absolute;
   margin: 40px;
-  border-radius: 5%;
+  border-radius: 10%;
 }
+
 .disk {
-  width: 20px;
-  height: 20px;
+  width: 80px;
+  height: 200px;
   background: rgb(211, 35, 35);
   margin: 10px;
   border-radius: 5%;
-  display: block;
   position: absolute;
+
 }
+
 .ball {
   width: 80px;
   height: 80px;

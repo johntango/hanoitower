@@ -1,24 +1,16 @@
-const fs = require("fs");
-let path = "output.js";
-fs.open(path, "w", function (err, fd) {
-  if (err) {
-    throw "could not open file: " + err;
-  }
-});
-
 const writeAll = (pegMap) => {
-  let s = JSON.stringify(pegMap) + ",";
-  fs.writeFileSync("output.js");
+  let s = JSON.stringify(pegMap);
+  // write output 
   console.log(s);
+  pegHist.push(JSON.parse(s));
 };
-
+const pegHist = [];
 const pegMap = {
   A: [],
   B: [],
   C: []
 };
 const pegArray = ["A", "B", "C"];
-
 const updateMapAndPlot = (pegMap, from, to) => {
   try {
     let theDisk = pegMap[from].pop(); // this actually moves the disk
@@ -62,8 +54,3 @@ const initialize = (nDisks, pegMap) => {
   }
   writeAll(pegMap);
 };
-const nDisks = 5;
-initialize(nDisks, pegMap);
-var sparePeg = missing("A", "C");
-
-moveDisks(nDisks, "A", "C", "B");
